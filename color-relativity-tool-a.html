@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+<title>Color Relativity Tool A</title>
+<script>
+    function getRandomColor() {
+        var letters = '0123456789ABCDEF';
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+          color += letters[Math.floor(Math.random() * 16)]; 
+        }
+        return color;
+    }
+    function draw() {
+        
+        var canvas = document.getElementById('myCanvas');
+        var ctx = canvas.getContext('2d');
+        var colors = [];
+        
+        var i = 4;
+        while (i >= 0) {
+          
+          colors[i] = "#" + Math.random().toString(16).slice(2, 8);
+          i -= 1;
+        }
+        
+        ctx.beginPath();
+        ctx.rect(0, 0, 512, 256);
+        ctx.fillStyle = colors[1];
+        ctx.fill();
+        
+        ctx.beginPath();
+        ctx.rect(0, 256, 512, 256);
+        ctx.fillStyle = colors[2];
+        ctx.fill();
+        
+        ctx.beginPath();
+        ctx.rect(0, 160, 512, 96);
+        ctx.fillStyle = colors[3];
+        ctx.fill();
+        
+        ctx.beginPath();
+        ctx.rect(0, 250, 512, 96);
+        ctx.fillStyle = colors[4];
+        ctx.fill();
+        
+        ctx.beginPath();
+        ctx.rect(224, 96, 64, 64);
+        ctx.rect(224, 346, 64, 64);
+        ctx.fillStyle = colors[0];
+        ctx.fill();
+        
+        const info = colors[0] + " = squares<br />" + 
+          colors[1] + " = background (upper)<br />" + 
+          colors[2] + " = background (lower)<br />" + 
+          colors[3] + " = stripe (upper)<br />" + 
+          colors[4] + " = stripe (lower)";
+        
+        document.getElementById("color_ids").innerHTML = info;
+    }
+</script>
+</head>
+
+<body onload="draw();">
+    <canvas id="myCanvas" width="512" height="512">
+    </canvas>
+<p id="color_ids"></p>
+<button onClick="window.location.reload();">New Colors</button>
+<p>A color combination generator inspired by chapter 4 of Josef Albers' <i>Interaction of Color</i>. While the two smaller squares are the same color, try to find combinations in which they appear dissimilar.</p>
+<p>Albers, Josef. <i>Interaction of Color</i>. New Haven, Connecticut: Yale University Press, 2006.</p>
+
+  <p><a href="https://wnoadiarwb.us/Slog/index.html">Back to Slog</a> - <a href="https://wnoadiarwb.us">Back to Index</a></p>
+  <p>&copy; Pudding Club 2021</p>
+</body>
+</html> 
